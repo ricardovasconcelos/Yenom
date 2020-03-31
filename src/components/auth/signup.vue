@@ -69,6 +69,9 @@
 </template>
 
 <script>
+
+import api from '../../services/api'
+
   export default {
     data () {
       return {
@@ -102,7 +105,11 @@
           hobbies: this.hobbyInputs.map(hobby => hobby.value),
           terms: this.terms
         }
-        console.log(formData)
+
+        api.post("/users.json", formData)
+                .then(res => console.log(res))
+                .catch(error => console.log(error))
+ 
       }
     }
   }
