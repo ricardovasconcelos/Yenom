@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <app-header />
-    <router-view></router-view>
+
+    <base-spinner/>
+    <button @click="showSpinner()">
+    Alternar Spinner
+    </button>
+    <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
-  import Header from './components/header/header.vue'
-  export default {
-    name: 'app',
-    components: {
-      'app-header': Header
+
+import BaseSpinner from './components/global/BaseSpinner.vue'
+
+export default {
+  name: 'App',
+  components: {
+    BaseSpinner
+  },
+  mounted () {
+    console.log(this.$firebase)
+  },
+  methods: {
+    showSpinner () {
+      this.$root.$emit('Spinner::show')
     }
   }
+}
 </script>
+<style lang="scss">
 
-<style>
-  body, html {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
 </style>
