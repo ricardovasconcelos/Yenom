@@ -9,18 +9,13 @@ export default {
   name: 'BaseSpinner',
   data () {
     return {
-      visible: false
+      visible: true
     }
   },
   created () {
-    this.$root.$on('Spinner::show', this.alternarSpinner)
+    this.$root.$on('Spinner::show', () => { this.visible = true })
 
-    this.$root.$on('Spinned::hide', this.alternarSpinner)
-  },
-  methods: {
-    alternarSpinner () {
-      this.visible = !this.visible
-    }
+    this.$root.$on('Spinner::hide', () => { this.visible = false })
   }
 
 }
