@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-
     <base-spinner/>
-    <button @click="showSpinner()">
-    Alternar Spinner
-    </button>
-    <!-- <router-view/> -->
+    <router-view/>
   </div>
 </template>
 
@@ -29,5 +25,9 @@ export default {
 }
 </script>
 <style lang="scss">
-
+#app{
+  min-height: 100vh;
+  color: var(--light);
+  background-color: var(--darker);
+}
 </style>
