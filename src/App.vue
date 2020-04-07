@@ -1,23 +1,44 @@
 <template>
   <div id="app">
     <base-spinner/>
-    <router-view/>
+
+    <div class="container-fluid" v-if="isLogged">
+      <div class="row">
+        <div class="col-2 navigation-sidebar">
+          <h1 class="app-title">Yenom</h1>
+           <layout-navigation/>
+        </div>
+        <div class="col">
+            <router-view/>
+        </div>
+      </div>
+    </div>
+
+  <router-view v-else/>
+
   </div>
 </template>
 
 <script>
 
 import BaseSpinner from './components/global/BaseSpinner.vue'
-
+import LayoutNavigation from './components/layout/LayoutNavigation'
 export default {
   name: 'App',
   components: {
-    BaseSpinner
+    BaseSpinner,
+    LayoutNavigation
+  },
+  data () {
+    return {
+      isLogged: false
+    }
   },
   mounted () {
     this.$firebase.auth().onAuthStateChanged(user => {
+      console.log('aeeee', user)
       window.uid = user ? user.uid : null
-
+      this.isLogged = !!user
       this.$router.push({ name: window.uid ? 'home' : 'login' })
 
       setTimeout(() => {
@@ -32,5 +53,15 @@ export default {
   min-height: 100vh;
   color: var(--light);
   background-color: var(--darker);
+
+  .navigation-sidebar{
+    background-color: var(--dark-medium)
+  }
+
+  .app-title {
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
 }
 </style>

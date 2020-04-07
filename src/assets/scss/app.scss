@@ -10,7 +10,8 @@
 .btn,
 .alert,
 .card,
-.form-control {
+.form-control
+.modal-content {
     border-radius: 0;
 }
 
@@ -19,5 +20,14 @@
   border-color: $featured-dark;
   &:hover {
     background-color: $featured-dark;
+  }
+}
+
+.btn-outline-primary {
+  border-color: var(--featured) !important;
+  color: var(--featured) !important;
+  &:hover{
+    color: var(--darker) !important;
+    background-color: var(--featured) !important;
   }
 }

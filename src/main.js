@@ -8,7 +8,6 @@ Vue.use(FirebaseVue)
 Vue.config.productionTip = false
 
 new Vue({
-  mode: 'history',
   router,
   render: h => h(App)
 }).$mount('#app')
