@@ -36,7 +36,6 @@ export default {
   },
   mounted () {
     this.$firebase.auth().onAuthStateChanged(user => {
-      console.log('aeeee', user)
       window.uid = user ? user.uid : null
       this.isLogged = !!user
       this.$router.push({ name: window.uid ? 'home' : 'login' })
