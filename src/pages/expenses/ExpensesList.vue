@@ -12,8 +12,9 @@
     </div>
   </div>
 
+<div class="container-group">
     <div class="container">
-      <div v-if="!activeMonth.data.length">
+      <div v-if="activeMonth.data && !activeMonth.data.length">
       Você não cadastrou nenhum gasto neste mês
       </div>
       <template v-else>
@@ -24,6 +25,8 @@
         />
       </template>
     </div>
+</div>
+
 </div>
 </template>
 
@@ -128,10 +131,17 @@ export default {
     }
   }
 }
+.container-group{
+  margin-left: -15px;
+  overflow: hidden auto;
+  width: calc(100% + 30px);
+  height: calc(100vh - 69px);
 
-.container {
+  .container {
   font-size: 15pt;
   padding-top: 15px;
   padding-bottom: 15px;
 }
+}
+
 </style>
