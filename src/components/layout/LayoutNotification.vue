@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'LayoutNotification',
   data () {
     return {
       show: false,
