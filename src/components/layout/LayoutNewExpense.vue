@@ -143,6 +143,9 @@ export default {
             })
             this.closeModal()
             this.loading = false
+            this.form.description = ''
+            this.form.value = ''
+            this.form.receipt = ''
           }
         })
       } catch (err) {

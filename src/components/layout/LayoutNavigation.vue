@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     routerLinks () {
-      return this.$router.options.routes.filter(route => route.name !== 'login')
+      return this.$router.options.routes.filter(route => route.name !== 'login' && route.name !== 'signup')
     }
   }
 }

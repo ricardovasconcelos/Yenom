@@ -27,6 +27,14 @@ const routes = [
       title: 'Login'
     },
     component: () => import(/* webpackChunkName: "login" */ '../pages/login/Login')
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    meta: {
+      title: 'signup'
+    },
+    component: () => import(/* webpackChunkName: "signup" */ '../pages/signup/signup')
   }
 ]
 
@@ -37,7 +45,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} - Yenom`
-  if (!window.uid && to.name !== 'login') {
+  if (!window.uid && to.name !== 'login' && to.name !== 'signup') {
     next({ name: 'login' })
   } else {
     next()

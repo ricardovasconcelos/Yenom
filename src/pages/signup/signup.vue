@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="doLogin()" class="form-login">
+  <form @submit.prevent="doSignup()" class="form-login">
     <div class="card">
       <div class="card-header text-center">
       <h1 class="mb-0">Yenom</h1>
@@ -13,16 +13,13 @@
         </div>
         <button class="btn btn-primary w-100">
           <template v-if="loading" :disabled="loading">
-          Entrando...
+          Cadastrando...
           <i class="fa fa-spinner fa-spin"></i>
           </template>
           <template v-else>
-          Entrar
+          Cadastrar
           <i class="fa fa-sign-in-alt"></i>
           </template>
-        </button>
-          <button class="btn btn-warning w-100" @click="signup">
-          Cadastre-se
         </button>
       </div>
     </div>
@@ -40,38 +37,21 @@ export default {
     }
   },
   methods: {
-    async doLogin () {
+    async doSignup () {
       this.loading = true
       const { email, password } = this
 
       try {
-        const res = await this.$firebase.auth().signInWithEmailAndPassword(email, password)
-
-        window.uid = res.user.uid
+        await this.$firebase.auth().createUserWithEmailAndPassword(email, password)
 
         this.$router.push({ name: 'home' })
       } catch (err) {
-        let message = ''
-        switch (err.code) {
-          case 'auth/user-not-found':
-            message = 'Não foi possivel localizar o usuário.'
-            break
-          case 'auth/wrong-password':
-            message = 'Senha inválida.'
-            break
-
-          default:
-            message = 'Não possivel realizar login, tente novamente.'
-        }
         this.$root.$emit('Notification::show', {
-          message,
+          message: 'Não possivel realizar cadastro, tente novamente.',
           type: 'danger'
         })
       }
       this.loading = false
-    },
-    signup () {
-      this.$router.push({ name: 'signup' })
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -95,9 +75,7 @@ export default {
   h1 {
     font-size: 18;
   }
-  .btn-warning{
-    margin-top: 1rem;
-  }
+
   .card{
   width: 30%;
   color: var(--darker)
